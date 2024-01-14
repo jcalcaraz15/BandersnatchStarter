@@ -35,7 +35,7 @@ The `main.py` file has a global variable `SPRINT`. You should set this variable 
 - [x] Signup for a MongoDB account: [MongoDB](https://account.mongodb.com)
 - [x] Create a "Shared Cluster" (free tier)
 - [x] Add your IP address to the allowed locales list
-- [ ] Copy the connection string into a `.env` file
+- [x] Copy the connection string into a `.env` file
     - `DB_URL=mongodb+srv://<username>:<password>@<cluster>.<project_id>.mongodb.net`
 
 ### 2. Functionality
