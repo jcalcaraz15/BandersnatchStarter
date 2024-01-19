@@ -19,9 +19,9 @@ class Database:
     def seed(self, amount = 1000):
         """correctly inserts the specified number of monsters into the
         collection, uses a built in mongo function"""
-        return {f"{self.collection.insert_many([Monster().to_dict()
-                                                for _ in range(amount)])
-                                                .acknowledged}"}
+        Monsters = [Monster().to_dict() for _ in range(amount)]
+        MonsterBook = self.collection.insert_many(Monsters)
+        return f"{MonsterBook.acknowledged}"
 
     def reset(self):
         """correctly deletes all monsters from the collection
