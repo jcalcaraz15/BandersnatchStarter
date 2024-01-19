@@ -13,7 +13,7 @@ class Database:
                            tlsCAFile=where())["Database"]
     
     def __init__(self, collection: str):
-        #establishes a connection between our database and the input
+        """establishes a connection between our database and the input"""
         self.collection = self.database[collection]
 
     def seed(self, amount = 1000):
