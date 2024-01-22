@@ -8,47 +8,56 @@ from pymongo import MongoClient
 
 
 class Database:
+    """
+    A class that is used to generate a randomized database of
+    monsters with different valued columns both numerical and text.
+    """
+
+
     load_dotenv()
-    database = MongoClient(getenv("CONNECTION_STR"),
-                           tlsCAFile=where())["Database"]
-    
+
     def __init__(self, collection: str):
-        """establishes a connection between our database and the input"""
+        """
+        Establishes a connection with our database.
+        """
+        self.database = MongoClient(getenv("CONNECTION_STR"),
+                                    tlsCAFile=where())["Database"]
         self.collection = self.database[collection]
 
     def seed(self, amount = 1000):
-        """correctly inserts the specified number of monsters into the
-        collection, uses a built in mongo function"""
+        """
+        Correctly inserts the specified number of monsters into the
+        collection.
+        """
         Monsters = [Monster().to_dict() for _ in range(amount)]
         MonsterBook = self.collection.insert_many(Monsters)
         return f"{MonsterBook.acknowledged}"
 
     def reset(self):
-        """correctly deletes all monsters from the collection
-        mongo functions we want to leave it an empty database delete
-        collection, built in mongo function"""
+        """
+        Correctly deletes all monsters from the collection.
+        """
         return self.collection.delete_many({})
-        
+
     def count(self) -> int:
-        """correctly returns the number of monsters in the collection
-        mongo db count indices of dictionary or collection, count_documents
-        self.collection.count_documents(Filter={}) built in mongo function"""
+        """
+        Correctly returns the number of monsters in the
+        collection.
+        """
         return self.collection.count_documents({})
-    
+
     def dataframe(self) -> DataFrame:
-        """correctly returns a DataFrame containing all monsters in the
-        collection
-        return a pandas dataframe df = pd.DataFrame(self.collection.find)
-        built in pandas function and then usage of find inside the pandas
-        function which is a mongo function"""
+        """
+        Correctly returns a DataFrame containing all monsters in
+        the collection.
+        """
         return pd.DataFrame(list(self.collection.find({})))
-        
+
     def html_table(self) -> str:
-        """correctly returns an HTML table representation of the DataFrame or
-        None if the collection is empty pandas function that converts to html
-        dataframe.to_html() if count > 0 then return self.dataframe else
-        return None usage of the other functions to produce a table, taps
-        into the mongo table during usage of said functions."""
+        """
+        Correctly returns an HTML table representation of the
+        DataFrame or None if the collection is empty.
+        """
         if self.count() > 0:
             return self.dataframe().to_html()
         else:
