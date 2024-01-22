@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from MonsterLab import Monster
 import pandas as pd
 from pandas import DataFrame
-from pymongo import MongoClient
+from pymongo.mongo_client import MongoClient
 
 
 class Database:
@@ -16,12 +16,13 @@ class Database:
 
     load_dotenv()
 
+    database = MongoClient(getenv("CONNECTION_STR"),
+                                    tlsCAFile=where())["Database"]
+
     def __init__(self, collection: str):
         """
         Establishes a connection with our database.
         """
-        self.database = MongoClient(getenv("CONNECTION_STR"),
-                                    tlsCAFile=where())["Database"]
         self.collection = self.database[collection]
 
     def seed(self, amount = 1000):
@@ -37,7 +38,7 @@ class Database:
         """
         Correctly deletes all monsters from the collection.
         """
-        return self.collection.delete_many({})
+        return f"{self.collection.delete_many(filter={}).acknowledged}"
 
     def count(self) -> int:
         """
@@ -51,7 +52,7 @@ class Database:
         Correctly returns a DataFrame containing all monsters in
         the collection.
         """
-        return pd.DataFrame(list(self.collection.find({})))
+        return pd.DataFrame(list(self.collection.find({}, {"_id":False})))
 
     def html_table(self) -> str:
         """
@@ -59,6 +60,6 @@ class Database:
         DataFrame or None if the collection is empty.
         """
         if self.count() > 0:
-            return self.dataframe().to_html()
+            return self.dataframe().to_html(index=False)
         else:
             return None
