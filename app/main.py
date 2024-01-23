@@ -1,6 +1,5 @@
 from base64 import b64decode
 import os
-
 from Fortuna import random_int, random_float
 from MonsterLab import Monster
 from flask import Flask, render_template, request
@@ -28,7 +27,7 @@ def home():
 def data():
     if SPRINT < 1:
         return render_template("data.html")
-    db = Database("collection")
+    db = Database("Collection")
     return render_template(
         "data.html",
         count=db.count(),

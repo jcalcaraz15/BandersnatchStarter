@@ -63,3 +63,7 @@ class Database:
             return self.dataframe().to_html(index=False)
         else:
             return None
+        
+if __name__ == '__main__':
+    db = Database("Collection")
+    db.seed()
