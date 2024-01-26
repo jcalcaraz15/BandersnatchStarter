@@ -10,7 +10,7 @@ from data import MongoDB
 from graph import chart
 from machine import Machine
 
-SPRINT = 2
+SPRINT = 3
 APP = Flask(__name__)
 
 
@@ -46,7 +46,7 @@ def view():
     y_axis = request.values.get("y_axis") or options[2]
     target = request.values.get("target") or options[4]
     graph = chart(
-        df=db.dataframe(),
+        df=db.dataframe().drop(columns=['_id'], errors='ignore'),
         x=x_axis,
         y=y_axis,
         target=target,
@@ -66,7 +66,7 @@ def view():
 def model():
     if SPRINT < 3:
         return render_template("model.html")
-    db = Database()
+    db = MongoDB('Collection')
     options = ["Level", "Health", "Energy", "Sanity", "Rarity"]
     filepath = os.path.join("app", "model.joblib")
     if not os.path.exists(filepath):

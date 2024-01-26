@@ -101,18 +101,24 @@ class MongoDB:
 
 
 if __name__ == '__main__':
+    from graph import chart
+    import altair_viewer
+    from random import randrange
 
     db = MongoDB("Collection")
-    # db.seed(amount=10000)
-    #
+    # db.seed(amount=2500)
+    # db.count()
     # db.reset()
-
+    # db.insert_many({"Value": randrange(1, 100)} for _ in range(10))
+    # print(DataFrame(db.read_many({})))
     # pandas_df = db.dataframe()
+    # monster_df = pandas_df.drop(columns=['_id'], errors='ignore')
 
     # if isinstance(pandas_df, pd.DataFrame):
     #     print("df is a Pandas DataFrame")
     # else:
     #     print("df is not a Pandas DataFrame")
+    # print(pandas_df.head())
 
     # html = db.html_table()
     # print(html)
