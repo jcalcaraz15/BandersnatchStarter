@@ -5,12 +5,11 @@ from app.data import Database
 def chart(df: DataFrame, x: str, y: str, target: str) -> Chart:
     graph = Chart(
         df,
-        title=f"{x} by {y} for {target}",
-        background = "gray"
+        title=f"{x} by {y} for {target}"
     ).mark_circle(size=100).encode(
         x=x,
         y=y,
-        color= target,
+        color=target,
         tooltip=Tooltip(df.columns.to_list())
     )
     return graph
