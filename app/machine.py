@@ -20,17 +20,16 @@ class Machine:
 
     def __call__(self, pred_basis: DataFrame):
         prediction, *_ = self.model.predict(pred_basis)
-        probability = self.model.predict_proba(pred_basis)
-        return prediction, probability
+        probability, *_ = self.model.predict_proba(pred_basis)
+        return prediction, max(probability)
 
     def save(self, filepath):
-        saved_model = joblib.dump(self.model, filepath)
-        return saved_model
+        joblib.dump(self.model, filepath)
 
-    @staticmethod
-    def open(filepath):
+    def open(self, filepath):
         loaded_model = joblib.load(filepath)
         return loaded_model
     
     def info(self):
-        return f"Base Model: {self.name} \nTimestamp: {datetime.now()}"
+        ret_str = f"""Base Model: {self.name}\nTimestamp: {datetime.now()}"""
+        return ret_str
