@@ -13,5 +13,9 @@ class Machine:
     def open(filepath):
         pass
 
-    def info(self):
-        pass
+def info(self, df):
+        output = (
+            f"Model Used: {self.name} ",
+            f"Timestamp: {df['Timestamp'][0]}"
+        )
+        return "<br>".join(output)
