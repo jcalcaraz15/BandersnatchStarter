@@ -2,6 +2,8 @@ import altair as alt
 from altair import Chart, Tooltip
 import pandas as pd
 
+alt.data_transformers.enable('vegafusion')
+
 
 def chart(df: pd.DataFrame, x: str, y:  str, target: str) -> alt.Chart:
     """ Create a chart function that takes a dataframe and a target column and returns a chart """

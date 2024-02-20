@@ -50,7 +50,7 @@ def view():
         x=x_axis,
         y=y_axis,
         target=target,
-    ).to_json()
+    ).to_json(format="vega")
     return render_template(
         "view.html",
         options=options,
@@ -70,7 +70,7 @@ def model():
     options = ["Level", "Health", "Energy", "Sanity", "Rarity"]
     filepath = os.path.join("app", "model.joblib")
     if not os.path.exists(filepath):
-        df = db.dataframe()
+        df = db.dataframe().drop(columns=['_id'], errors='ignore')
         machine = Machine(df[options])
         machine.save(filepath)
     else:

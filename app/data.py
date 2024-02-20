@@ -1,6 +1,5 @@
 """ Monster Database Interface """
 from os import getenv
-from typing import Dict, Iterable, Iterator
 import pandas as pd
 from certifi import where
 from dotenv import load_dotenv
@@ -17,38 +16,6 @@ class MongoDB:
     def __init__(self, collection: str):
         """ Initialize the MongoDB instance with a specific collection. """
         self.collection = self.database[collection]
-
-    def insert_one(self, document: Dict) -> bool:
-        """ Insert a single document into the collection. """
-        return self.collection.insert_one(document).acknowledged
-
-    def insert_many(self, documents: Iterable[Dict]) -> bool:
-        """ Insert multiple documents into the collection. """
-        return self.collection.insert_many(documents).acknowledged
-
-    def read_one(self, query: Dict) -> Dict:
-        """ Retrieve a single document based on the query. """
-        return self.collection.find_one(query, {"_id": False})
-
-    def read_many(self, query: Dict) -> Iterator[Dict]:
-        """ Retrieve multiple documents based on the query. """
-        return self.collection.find(query, {"_id": False})
-
-    def update_one(self, query: Dict, update: Dict) -> bool:
-        """ Update a single document based on the query. """
-        return self.collection.update_one(query, {"$set": update}).acknowledged
-
-    def update_many(self, query: Dict, update: Dict) -> bool:
-        """ Update multiple documents based on the query. """
-        return self.collection.update_many(query, {"$set": update}).acknowledged
-
-    def delete_one(self, query: Dict) -> bool:
-        """ Delete a single document based on the query. """
-        return self.collection.delete_one(query).acknowledged
-
-    def delete_many(self, query: Dict) -> bool:
-        """ Delete multiple documents based on the query. """
-        return self.collection.delete_many(query).acknowledged
 
     def seed(self, amount):
         """ Inserts the specified number of documents into the collection """
@@ -107,18 +74,24 @@ if __name__ == '__main__':
 
     db = MongoDB("Collection")
     # db.seed(amount=2500)
-    # db.count()
+
+    # print(db.count())
+
     # db.reset()
+
     # db.insert_many({"Value": randrange(1, 100)} for _ in range(10))
     # print(DataFrame(db.read_many({})))
-    # pandas_df = db.dataframe()
-    # monster_df = pandas_df.drop(columns=['_id'], errors='ignore')
 
-    # if isinstance(pandas_df, pd.DataFrame):
-    #     print("df is a Pandas DataFrame")
-    # else:
-    #     print("df is not a Pandas DataFrame")
+    # pandas_df = db.dataframe()
     # print(pandas_df.head())
+    #
+    # # if isinstance(pandas_df, pd.DataFrame):
+    # #     print("df is a Pandas DataFrame")
+    # # else:
+    # #     print("df is not a Pandas DataFrame")
+    # # print(pandas_df.head())
+
+    # monster_df = pandas_df.drop(columns=['_id'], errors='ignore')
 
     # html = db.html_table()
     # print(html)
