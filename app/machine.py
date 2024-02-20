@@ -29,4 +29,8 @@ class Machine:
 
     def info(self):
         timestamp = datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')
+<<<<<<< HEAD
         return f"Base Model: {self.name}<br>Timestamp: {timestamp}"
+=======
+        return f"Base Model: {self.name} <br> Timestamp: {timestamp}"
+>>>>>>> c53dafb1338b980b9be4e417ced59946d66a47b7
