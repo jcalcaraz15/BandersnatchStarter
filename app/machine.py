@@ -29,4 +29,4 @@ class Machine:
 
     def info(self):
         timestamp = datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')
-        return f"Base Model: {self.name}<br>Timestamp: {timestamp}"
+        return f"Base Model: {self.name} <br> Timestamp: {timestamp}"
