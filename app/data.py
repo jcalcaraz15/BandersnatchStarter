@@ -9,7 +9,10 @@ from pymongo import MongoClient
 
 
 class MongoDB:
-    """ A class representing a MongoDB database connection and operations on a specific collection. """
+    """ 
+    A class representing a MongoDB database connection
+    and operations on a specific collection.
+    """
     load_dotenv()
     database = MongoClient(getenv("DB_URL"), tlsCAFile=where())['BandersnatchStarter']
 
