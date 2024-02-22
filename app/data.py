@@ -42,6 +42,7 @@ class MongoDB:
 
         result = self.collection.insert_many(add_list)
         print(f"There were {monster_count} documents inserted.")
+        return result
 
     def reset(self):
         """ Drop the entire collection to clear all documents """
@@ -54,9 +55,7 @@ class MongoDB:
 
     def dataframe(self) -> DataFrame:
         """ Create Pandas DataFrame from mongoDB collection """
-        documents = list(self.collection.find())
-        df = pd.DataFrame(documents)
-        return df
+        return pd.DataFrame(list(self.collection.find()))
 
     def html_table(self) -> str:
         """ Return the pandas dataframe in a html formatted table. """
@@ -65,36 +64,27 @@ class MongoDB:
         if df.empty:
             return "None"
 
-        df = df.drop(columns=['_id'], errors='ignore')
-        html_table = df.to_html(index=True)
-        return html_table
-
+        return df.to_html()
 
 if __name__ == '__main__':
-    from graph import chart
-    import altair_viewer
-    from random import randrange
+
 
     db = MongoDB("Collection")
-    # db.seed(amount=2500)
+    db.seed(amount=2500)
 
     # print(db.count())
 
     # db.reset()
+    # print(db.count())
 
-    # db.insert_many({"Value": randrange(1, 100)} for _ in range(10))
-    # print(DataFrame(db.read_many({})))
-
-    # pandas_df = db.dataframe()
-    # print(pandas_df.head())
+    # df = db.dataframe()
+    # print(df.head())
     #
-    # # if isinstance(pandas_df, pd.DataFrame):
+    # # if isinstance(df, pd.DataFrame):
     # #     print("df is a Pandas DataFrame")
     # # else:
     # #     print("df is not a Pandas DataFrame")
-    # # print(pandas_df.head())
+    # # print(df.head())
 
-    # monster_df = pandas_df.drop(columns=['_id'], errors='ignore')
-
-    # html = db.html_table()
-    # print(html)
+    html = db.html_table()
+    print(html)
