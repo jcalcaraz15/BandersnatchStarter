@@ -40,9 +40,8 @@ class MongoDB:
             add_list.append(monster_data)
             monster_count += 1
 
-        result = self.collection.insert_many(add_list)
         print(f"There were {monster_count} documents inserted.")
-        return result
+        return self.collection.insert_many(add_list)
 
     def reset(self):
         """ Drop the entire collection to clear all documents """
@@ -70,21 +69,19 @@ if __name__ == '__main__':
 
 
     db = MongoDB("Collection")
+    db.reset()
+    print(db.count())
+
     db.seed(amount=2500)
+    print(db.count())
 
-    # print(db.count())
+    df = db.dataframe()
 
-    # db.reset()
-    # print(db.count())
+    if isinstance(df, pd.DataFrame):
+        print("df is a Pandas DataFrame")
+    else:
+        print("df is not a Pandas DataFrame")
+    print(df.head())
 
-    # df = db.dataframe()
-    # print(df.head())
-    #
-    # # if isinstance(df, pd.DataFrame):
-    # #     print("df is a Pandas DataFrame")
-    # # else:
-    # #     print("df is not a Pandas DataFrame")
-    # # print(df.head())
-
-    html = db.html_table()
-    print(html)
+    # html = db.html_table()
+    # print(html)
