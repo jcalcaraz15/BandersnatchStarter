@@ -1,12 +1,22 @@
+""" MongoDB Collection visualization using Altair """
 import altair as alt
-from altair import Chart, Tooltip
 import pandas as pd
 
 alt.data_transformers.enable('vegafusion')
 
 
 def chart(df: pd.DataFrame, x: str, y:  str, target: str) -> alt.Chart:
-    """ Create a chart function that takes a dataframe and a target column and returns a chart """
+    """Create a scatter plot chart.
+
+    Parameters:
+    - df (pd.DataFrame): The dataframe containing the data.
+    - x (str): The column name to be plotted on the x-axis.
+    - y (str): The column name to be plotted on the y-axis.
+    - target (str): The column name representing the color encoding.
+
+    Returns:
+    - alt.Chart: An Altair chart object representing the scatter plot.
+    """
 
     properties = {"labelColor":'#AAAAAA',
                   "titleColor":'#AAAAAA',
@@ -41,7 +51,13 @@ def chart(df: pd.DataFrame, x: str, y:  str, target: str) -> alt.Chart:
                               fontSize=23),
         width=450,
         height=500,
-        padding={"left": 42, "right": 42, "top": 42, "bottom": 42},
-        background="#232323"
-    )
+        background="#232323",
+        padding={
+            "left": 42,
+            "right": 42,
+            "top": 42,
+            "bottom": 42
+            }
+)
+
     return graph
