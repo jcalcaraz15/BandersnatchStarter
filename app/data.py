@@ -54,16 +54,17 @@ class MongoDB:
 
     def dataframe(self) -> DataFrame:
         """ Create Pandas DataFrame from mongoDB collection """
-        return pd.DataFrame(list(self.collection.find()))
+        result = self.collection.find({}, {'_id': False})
+        return pd.DataFrame(result)
 
     def html_table(self) -> str:
         """ Return the pandas dataframe in a html formatted table. """
         df = self.dataframe()
-
-        if df.empty:
-            return "None"
-
-        return df.to_html()
+        if not df.empty:
+            df.index = range(1, len(df) + 1)
+            return df.to_html()
+        else:
+            return None
 
 if __name__ == '__main__':
 

@@ -10,7 +10,7 @@ from data import MongoDB
 from graph import chart
 from machine import Machine
 
-SPRINT = 1
+SPRINT = 2
 APP = Flask(__name__)
 
 
