@@ -18,7 +18,7 @@ def chart(df: pd.DataFrame, x: str, y:  str, target: str) -> alt.Chart:
     - alt.Chart: An Altair chart object representing the scatter plot.
     """
 
-    properties = {"labelColor":'#AAAAAA',
+    params = {"labelColor":'#AAAAAA',
                   "titleColor":'#AAAAAA',
                   "gridColor":"#333333",
                   "labelFontSize":12,
@@ -27,23 +27,23 @@ def chart(df: pd.DataFrame, x: str, y:  str, target: str) -> alt.Chart:
                   "legendtitlePadding":15}
 
     graph = alt.Chart(df).mark_circle(size=100).encode(
-        x=alt.X(x, axis=alt.Axis(labelColor=properties['labelColor'],
-                                 labelFontSize=properties['labelFontSize'],
-                                 titleColor=properties['titleColor'],
-                                 titlePadding=properties['titlePadding'],
-                                 titleFontSize=properties['titleFontSize'],
-                                 gridColor=properties['gridColor'])),
-        y=alt.Y(y, axis=alt.Axis(labelColor=properties['labelColor'],
-                                 labelFontSize=properties['labelFontSize'],
-                                 titleColor=properties['titleColor'],
-                                 titlePadding=properties['titlePadding'],
-                                 titleFontSize=properties['titleFontSize'],
-                                 gridColor=properties['gridColor'])),
-        color=alt.Color(target, legend=alt.Legend(labelColor=properties['labelColor'],
-                                                  labelFontSize=properties['labelFontSize'],
-                                                  titleColor=properties['titleColor'],
-                                                  titleFontSize=properties['titleFontSize'],
-                                                  titlePadding=properties['legendtitlePadding'])),
+        x=alt.X(x, axis=alt.Axis(labelColor=params['labelColor'],
+                                 labelFontSize=params['labelFontSize'],
+                                 titleColor=params['titleColor'],
+                                 titlePadding=params['titlePadding'],
+                                 titleFontSize=params['titleFontSize'],
+                                 gridColor=params['gridColor'])),
+        y=alt.Y(y, axis=alt.Axis(labelColor=params['labelColor'],
+                                 labelFontSize=params['labelFontSize'],
+                                 titleColor=params['titleColor'],
+                                 titlePadding=params['titlePadding'],
+                                 titleFontSize=params['titleFontSize'],
+                                 gridColor=params['gridColor'])),
+        color=alt.Color(target, legend=alt.Legend(labelColor=params['labelColor'],
+                                                  labelFontSize=params['labelFontSize'],
+                                                  titleColor=params['titleColor'],
+                                                  titleFontSize=params['titleFontSize'],
+                                                  titlePadding=params['legendtitlePadding'])),
         tooltip=list(df.columns)
     ).properties(
         title=alt.TitleParams(text=f"{y} by {x} for {target}",
