@@ -70,19 +70,19 @@ if __name__ == '__main__':
 
 
     db = MongoDB("Collection")
-    db.reset()
-    print(db.count())
+    # db.reset()
+    # print(db.count())
 
-    db.seed(amount=2500)
-    print(db.count())
+    # db.seed(amount=2500)
+    # print(db.count())
 
-    df = db.dataframe()
+    # df = db.dataframe()
 
-    if isinstance(df, pd.DataFrame):
-        print("df is a Pandas DataFrame")
-    else:
-        print("df is not a Pandas DataFrame")
-    print(df.head())
+    # if isinstance(df, pd.DataFrame):
+    #     print("df is a Pandas DataFrame")
+    # else:
+    #     print("df is not a Pandas DataFrame")
+    # print(df.head())
 
-    # html = db.html_table()
-    # print(html)
+    html = db.html_table()
+    print(html)
