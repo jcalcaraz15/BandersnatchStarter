@@ -30,10 +30,10 @@ Submit the following in your course:
 ## Guidance
 
 ### A. Notebook Model Training & Tuning
-- [ ] Create a notebook for model testing and tuning
-- [ ] Train and tune at least 3 models using the data generated in an earlier Sprint
-- [ ] Measure the accuracy of the models and report info about your best model 
-- [ ] Write a paragraph or two about your best model
+- [x] Create a notebook for model testing and tuning
+- [x] Train and tune at least 3 models using the data generated in an earlier Sprint
+- [x] Measure the accuracy of the models and report info about your best model 
+- [X] Write a paragraph or two about your best model
 
 ### B. Machine Learning Interface Class
 - Starter File: `app/machine`
@@ -65,8 +65,8 @@ class Machine:
 ```
 
 ### C. Model Serialization
-- [ ] Does `save()` properly save the machine learning model to the specified filepath using joblib?
-- [ ] Does `open()` properly load a saved machine learning model from the specified filepath using joblib?
+- [X] Does `save()` properly save the machine learning model to the specified filepath using joblib?
+- [X] Does `open()` properly load a saved machine learning model from the specified filepath using joblib?
 
 ### D. API Model Integration
-- [ ] Does `info()` return a string with the name of the base model and the timestamp of when it was initialized?
+- [X] Does `info()` return a string with the name of the base model and the timestamp of when it was initialized?
