@@ -39,9 +39,9 @@ Submit the following in your course:
 - Starter File: `app/machine`
 - Suggested ML Library: Scikit-learn
 
-- [ ] Does the __init__ function properly initialize the machine learning model and store it as an attribute?
-- [ ] Does the class properly handle and store the target and feature data when initializing the model?
-- [ ] Does the __call__ function take in a DataFrame of feature data and return a prediction and the probability of the prediction?
+- [x] Does the __init__ function properly initialize the machine learning model and store it as an attribute?
+- [x] Does the class properly handle and store the target and feature data when initializing the model?
+- [x] Does the __call__ function take in a DataFrame of feature data and return a prediction and the probability of the prediction?
 
 #### Example Machine Learning Interface
 ```python
