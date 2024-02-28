@@ -22,8 +22,6 @@ class Machine:
         self.model = RandomForestClassifier()
         self.model.fit(features, target)
 
-    # def retrain(self, model):
-    #     model = open
 
     def __call__(self, pred_basis: pd.DataFrame):
         # Predicts the rarity of items based on input features.
